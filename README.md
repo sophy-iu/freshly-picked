@@ -8,9 +8,14 @@
 - composer install
 - composer require laravel/fortify
 - cp .env.example .env ,環境変数を適宜変更
-- php artisan make:migration create_categories_table ,カラムの追加は下記ER図参照
-- php artisan make:migration create_contacts_table ,カラムの追加は下記ER図参照
+- php artisan make:migration create_products_table ,カラムの追加は下記ER図参照
+- php artisan make:migration create_seasons_table ,カラムの追加は下記ER図参照
+- php artisan make:migration create_product_season_table ,カラムの追加は下記ER図参照
 - php artisan migrate
+- php artisan make:seeder ProductsTableSeeder ,カラムの追加は下記ER図参照
+- php artisan make:seeder SeasonsTableSeeder ,カラムの追加は下記ER図参照
+- php artisan make:seeder ProductSeasonTableSeeder ,カラムの追加は下記ER図参照
+- php artisan db:seed
 
 ## 使用技術
 - nginx（Webサーバ）
@@ -19,17 +24,11 @@
 - phpMyAdmin
 
 ## ER図
-
+![ER図](index.drawio.png)
 
 ## URL
-- お問い合わせフォーム入力ページ：http://localhost/
-- お問い合わせフォーム確認ページ：http://localhost/confirm
-- サンクスページ：http://localhost/thanks
+- 商品一覧ページ：http://localhost/products
+- 商品詳細ページ：http://localhost/products/detail/{:productId}
+- 商品登録ページ：http://localhost/products/register
 - 管理画面：http://localhost/admin
-- 検索：http://localhost/search
-- 検索リセット：http://localhost/reset
-- お問い合わせフォーム削除：http://localhost/delete
-- ユーザ登録：http://localhost/register
-- ログイン：http://localhost/login
-- ログアウト：http://localhost/logout
-- エクスポート：http://localhost/export
+- 検索：http://localhost/products/search
