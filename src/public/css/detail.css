@@ -196,3 +196,9 @@ a {
     color: red;
     cursor: pointer;
 }
+
+.form__error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

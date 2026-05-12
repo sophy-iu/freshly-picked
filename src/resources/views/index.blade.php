@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>商品一覧</title>
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index&search.css') }}">
 </head>
 <body>
     <header class="header">

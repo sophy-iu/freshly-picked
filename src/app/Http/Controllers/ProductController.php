@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -55,7 +56,7 @@ class ProductController extends Controller
         return view('register', compact('seasons'));
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         // 画像保存
         $imagePath = $request->file('image')->store('images/products', 'public');
@@ -75,7 +76,7 @@ class ProductController extends Controller
         return redirect('/products');
     }
 
-    public function update(Request $request, $productId)
+    public function update(ProductRequest $request, $productId)
     {
         $product = Product::findOrFail($productId);
 

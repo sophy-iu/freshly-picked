@@ -17,13 +17,22 @@
             @csrf
 
             <label class="register-form__label">商品名 <span>必須</span></label>
-            <input class="register-form__input" type="text" name="name" placeholder="商品名を入力">
+            <input class="register-form__input" type="text" name="name" placeholder="商品名を入力" value="{{ old('name') }}">
+            @error('name')
+                <p class="form__error">{{ $message }}</p>
+            @enderror
 
             <label class="register-form__label">値段 <span>必須</span></label>
-            <input class="register-form__input" type="text" name="price" placeholder="値段を入力">
+            <input class="register-form__input" type="text" name="price" placeholder="値段を入力" value="{{ old('price') }}">
+            @error('price')
+                <p class="form__error">{{ $message }}</p>
+            @enderror
 
             <label class="register-form__label">商品画像 <span>必須</span></label>
             <input class="register-form__file" type="file" name="image">
+            @error('image')
+                <p class="form__error">{{ $message }}</p>
+            @enderror
 
             <label class="register-form__label">
                 季節 <span>必須</span>
@@ -33,14 +42,20 @@
             <div class="register-form__seasons">
                 @foreach ($seasons as $season)
                     <label>
-                        <input type="checkbox" name="seasons[]" value="{{ $season->id }}">
+                        <input type="checkbox" name="seasons[]" value="{{ $season->id }}"{{ in_array($season->id, old('seasons', [])) ? 'checked' : '' }}>
                         {{ $season->name }}
                     </label>
                 @endforeach
             </div>
+            @error('seasons')
+                <p class="form__error">{{ $message }}</p>
+            @enderror
 
             <label class="register-form__label">商品説明 <span>必須</span></label>
-            <textarea class="register-form__textarea" name="description" placeholder="商品の説明を入力"></textarea>
+            <textarea class="register-form__textarea" name="description" placeholder="商品の説明を入力">{{ old('description') }}</textarea>
+            @error('description')
+                <p class="form__error">{{ $message }}</p>
+            @enderror
 
             <div class="register-form__buttons">
                 <a class="register-form__back" href="/products">戻る</a>

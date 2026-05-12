@@ -28,15 +28,24 @@
             <div class="detail__content">
                 <div class="detail__image-area">
                     <img class="detail__image" src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                    @error('image')
+                        <p class="form__error">{{ $message }}</p>
+                    @enderror
                     <input type="file" class="detail__file" name="image">
                 </div>
 
                 <div class="detail__form">
                     <label class="detail__label">商品名</label>
-                    <input class="detail__input" type="text" name="name" value="{{ $product->name }}">
+                    <input class="detail__input" type="text" name="name" value="{{ old('name', $product->name) }}">
+                    @error('name')
+                        <p class="form__error">{{ $message }}</p>
+                    @enderror
 
                     <label class="detail__label">値段</label>
-                    <input class="detail__input" type="text" name="price" value="{{ $product->price }}">
+                    <input class="detail__input" type="text" name="price"  value="{{ old('price', $product->price) }}">
+                    @error('price')
+                        <p class="form__error">{{ $message }}</p>
+                    @enderror
 
                     <label class="detail__label">季節</label>
                     <div class="detail__seasons">
@@ -46,18 +55,24 @@
                                     type="checkbox"
                                     name="seasons[]"
                                     value="{{ $season->id }}"
-                                    {{ $product->seasons->contains($season->id) ? 'checked' : '' }}
+                                    {{in_array($season->id, old('seasons', $product->seasons->pluck('id')->toArray())) ? 'checked' : '' }}
                                 >
                                 {{ $season->name }}
                             </label>
                         @endforeach
                     </div>
+                    @error('seasons')
+                        <p class="form__error">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
             <div class="detail__description">
                 <label class="detail__label">商品説明</label>
-                <textarea class="detail__textarea" name="description">{{ $product->description }}</textarea>
+                <textarea class="detail__textarea" name="description">{{ old('description', $product->description) }}</textarea>
+                @error('description')
+                    <p class="form__error">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="detail__buttons">
